@@ -43,6 +43,6 @@
     "@opam/cmdliner": "1.0.2"
   },
   "devDependencies": {
-    "ocaml": ">=4.6.0"
+    "ocaml": ">=4.6.0 <4.9.0"
   }
 }
