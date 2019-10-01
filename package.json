@@ -40,7 +40,8 @@
     "reason-gl-matrix": "^0.9.9304"
   },
   "resolutions": {
-    "@opam/cmdliner": "1.0.2"
+    "@opam/cmdliner": "1.0.2",
+    "esy-sdl2": "github:revery-ui/esy-sdl2#cc5f965"
   },
   "devDependencies": {
     "ocaml": ">=4.6.0 <4.9.0"

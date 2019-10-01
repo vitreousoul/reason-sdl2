@@ -40,6 +40,7 @@ let initShaderProgram = (vsSource, fsSource) => {
 let run = () => {
   let _ = Sdl2.init();
   let primaryWindow = Sdl2.Window.create(100, 100, "test");
+  print_endline ("[USING PATCHED ESY-SDL2]");
   let context = Sdl2.Gl.setup(primaryWindow);
   Sdl2.Gl.setSwapInterval(1);
   //glfwMakeContextCurrent(primaryWindow);
@@ -302,11 +303,13 @@ let run = () => {
     | None => ()
     | Some(evt) =>
       print_endline(Sdl2.Event.show(evt));
+      print_endline("Mod state: " ++ string_of_int(Sdl2.Keymod.getState()));
       switch (evt) {
       | Sdl2.Event.Quit => exit(0)
       | _ => ()
       };
     };
+
 
     render(primaryWindow);
     /* render(secondaryWindow); */
