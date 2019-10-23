@@ -844,10 +844,18 @@ CAMLprim value resdl_SDL_CreateWindow(value vWidth, value vHeight,
 
   /* Turn on double buffering with a 24bit Z buffer.
    * You may need to change this to 16 or 32 for your system */
+  printf("Setting SDL_GL_CONTEXT_PROFILE_MASK\n");
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+  printf("Setting SDL_GL_CONTEXT_MAJOR_VERSION\n");
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+  printf("Setting SDL_GL_CONTEXT_MINOR_VERSION\n");
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+  printf("Setting SDL_GL_DOUBLEBUFFER\n");
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   // SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
+  
+  printf("Calling create window with title: %s width: %d height: %d\n", String_val(vName), width, height);
 
   SDL_Window *win = (SDL_CreateWindow(
       String_val(vName), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,
@@ -942,6 +950,7 @@ CAMLprim value resdl_SDL_GetWindowId(value vWindow) {
 CAMLprim value resdl_SDL_Init() {
   CAMLparam0();
   int ret = SDL_Init(SDL_INIT_VIDEO);
+  printf("SDL_INIT returned: %d\n", ret);
 
   CAMLreturn(Val_int(ret));
 }
