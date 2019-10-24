@@ -130,6 +130,9 @@ module Window = {
 
   external getDisplay: t => Display.t = "resdl_SDL_GetWindowDisplayIndex";
 
+  // Mac-Only: Hide titlebar
+  external hideOSXTitleBar: t => unit = "resdl_SDL_HideOSXTitleBar";
+
   // Windows-Only: Set DPI Aware process flag
   // Other platforms: no-op
   external setWin32ProcessDPIAware: t => unit =

@@ -161,6 +161,29 @@ HWND getHWNDFromSDLWindow(SDL_Window *win) {
 
 #endif
 
+#ifdef __APPLE__
+NSWindow* getNSWindowFromSDLWindow(SDL_Window *win) {
+  SDL_SysWMinfo wmInfo;
+  SDL_VERSION(&wmInfo.version);
+  SDL_GetWindowWMInfo(win, &wmInfo);
+  return wmInfo.info.cocoa.window;
+};
+#endif
+
+
+CAMLprim value resdl_SDL_HideOSXTitleBar(value vWin) {
+  CAMLparam1(vWin);
+
+#ifdef __APPLE__
+    SDL_Window *win = (SDL_Window *)vWin;
+    NSWindow *nsWindow = getNSWindowFromSDLWindow(win);
+    nsWindow.titlebarAppearsTransparent = true;
+    nsWindow.titleVisibility = .Hidden;
+#endif
+
+  CAMLreturn(Val_unit);
+}
+
 CAMLprim value resdl_SDL_SetWin32ProcessDPIAware(value vWin) {
   CAMLparam1(vWin);
 
