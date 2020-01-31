@@ -1,4 +1,4 @@
-(ignored_subdirs (node_modules))
+(dirs :standard \ node_modules) ;; include all directories except node_modules
 
 (alias
     (name runtest)
